@@ -6,11 +6,13 @@ on:
       - "main"
     paths:
       - "web/**/*"
+      - ".github/workflows/web.yaml"
   push:
     branches:
       - "main"
     paths:
       - "web/**/*"
+      - ".github/workflows/web.yaml"
   workflow_dispatch:
 
 jobs:
