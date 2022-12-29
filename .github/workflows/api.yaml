@@ -61,9 +61,9 @@ jobs:
           envs: SECRET_KEY_BASE, DB_PASSWORD, DB_NAME, DB_USER, DB_HOST, DB_PORT, GITHUB_TOKEN, GITHUB_RUN_NUMBER
           script: |
             echo $GITHUB_TOKEN | docker login ghcr.io -u madetara --password-stdin
-            docker stop yaka-api
-            docker rm yaka-api
-            docker run -d --name yaka-api --restart unless-stopped -p 3030:3000 \
+            podman stop yaka-api
+            podman rm yaka-api
+            podman run -d --name yaka-api --restart unless-stopped -p 3030:3000 \
               -e DB_PASSWORD="$DB_PASSWORD" \
               -e DB_NAME="$DB_NAME" \
               -e DB_USER="$DB_USER" \
