@@ -3,14 +3,14 @@ name: Database deployment
 on:
   push:
     branches:
-      - 'main'
+      - "main"
     paths:
-      - '.github/workflows/database.yaml'
+      - ".github/workflows/database.yaml"
   workflow_dispatch:
 
 jobs:
   deploy_database:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
       POSTGRES_USER: ${{ secrets.DB_USER }}
