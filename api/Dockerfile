@@ -12,4 +12,6 @@ RUN bundle install
 
 COPY . .
 ENV RAILS_ENV=production
-ENTRYPOINT [ "bundle", "exec", "rake", "startup" ]
+
+ENTRYPOINT [ "docker-entrypoint.sh" ]
+CMD ["rake", "startup"]
