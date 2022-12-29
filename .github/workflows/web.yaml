@@ -54,7 +54,7 @@ jobs:
           username: root
           envs: GITHUB_TOKEN, GITHUB_RUN_NUMBER
           script: |
-            echo $GITHUB_TOKEN | docker login ghcr.io -u madetara --password-stdin
+            echo $GITHUB_TOKEN | podman login ghcr.io -u madetara --password-stdin
             podman stop yaka-web
             podman rm yaka-web
             podman run -d --name yaka-web --restart unless-stopped -p 3060:80 \
