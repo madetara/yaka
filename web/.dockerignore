@@ -2,17 +2,9 @@
 
 !src/*
 !public/*
-!index.html
-!.pnp.*
-!.pnp.loader.*
-!tsconfig.*
 !package.json
+!.browserslistrc
+!index.html
+!pnpm-lock.yaml
+!tsconfig.*
 !vite.config.ts
-!env.d.ts
-!yarn.lock
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
