@@ -1,5 +1,5 @@
 <template>
-  <v-app :theme="theme">
+  <v-app :theme="themeStore.theme">
     <v-app-bar>
       <template v-slot:prepend>
         <v-app-bar-nav-icon
@@ -16,7 +16,7 @@
         <v-switch
           style="margin-top: 17%"
           align="right"
-          v-model="theme"
+          v-model="themeStore.theme"
           true-value="light"
           false-value="dark"
           :prepend-icon="'mdi-weather-night'"
@@ -37,8 +37,9 @@
 <script lang="ts" setup>
 import { Ref, ref } from "vue";
 import { RouterView } from "vue-router";
+import { useThemeStore } from "./store/app";
 
-const theme: Ref<string> = ref("light");
+const themeStore = useThemeStore();
 
 const drawer: Ref<boolean> = ref(false);
 </script>
