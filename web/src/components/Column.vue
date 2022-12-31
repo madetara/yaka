@@ -4,7 +4,12 @@
     <template v-for="card in column.cards.values()" :key="card">
       <v-row no-gutters>
         <v-col>
-          <Card :card="card" />
+          <Card
+            :card="card"
+            :move-left-disabled="props.isMostLeft"
+            :move-right-disabled="props.isMostRight"
+            @move-card="moveCard"
+          />
         </v-col>
       </v-row>
     </template>
@@ -56,6 +61,8 @@ import { ref, reactive } from "vue";
 
 export interface Props {
   column: Column;
+  isMostLeft: boolean;
+  isMostRight: boolean;
 }
 
 const emit = defineEmits<{
@@ -65,6 +72,7 @@ const emit = defineEmits<{
     cardTitle: String,
     cardText: String
   ): void;
+  (e: "move-card", cardId: number, columnId: number, direction: number): void;
 }>();
 const props = defineProps<Props>();
 
@@ -80,5 +88,9 @@ function addNewCard() {
 
   newCardTitle.value = "";
   newCardText.value = "";
+}
+
+function moveCard(cardId: number, direction: number) {
+  emit("move-card", cardId, column.id, direction);
 }
 </script>

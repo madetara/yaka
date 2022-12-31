@@ -19,8 +19,8 @@ export const useThemeStore = defineStore("theme", () => {
 export const useBoardStore = defineStore("board", () => {
   // TODO delete
   const testingBoard = new Board("Test board", [
-    new Column(1, 1, "NEW", [new Card(1, 1, 1, "foo", "bar")]),
-    new Column(2, 2, "DONE", [new Card(2, 2, 2, "baz", "quux")]),
+    new Column(1, 0, "NEW", [new Card(1, 1, 0, "foo", "bar")]),
+    new Column(2, 1, "DONE", [new Card(2, 2, 0, "baz", "quux")]),
   ]);
 
   const localBoardString = localStorage.getItem("board");
