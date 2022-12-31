@@ -1,6 +1,10 @@
 <template>
-  <div>{{ board.name }}</div>
   <v-container>
+    <v-row justify="center">
+      <v-col class="text-center">
+        <h1>{{ board.name }}</h1>
+      </v-col>
+    </v-row>
     <v-row justify="center" no-gutters>
       <template v-for="column in board.columns.values()" :key="column">
         <v-col align-self="start" cols="3" class="mx-1" width="200">
