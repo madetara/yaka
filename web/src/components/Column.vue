@@ -1,7 +1,21 @@
 <template>
-  <div align="center">{{ column.title }}</div>
   <v-container>
-    <v-row no-gutters justify="center" class="text-center pb-2">
+    <v-row justify="center">
+      <v-col>
+        <v-spacer></v-spacer>
+      </v-col>
+      <v-col class="text-center">
+        <h2>{{ column.title }}</h2>
+      </v-col>
+      <v-col>
+        <v-btn
+          icon="mdi-minus-thick"
+          variant="plain"
+          @click="removeColumn"
+        ></v-btn>
+      </v-col>
+    </v-row>
+    <v-row no-gutters justify="center" class="text-center py-3">
       <v-col align-self="center">
         <v-dialog width="400" v-model="addCardDialog">
           <template v-slot:activator="{ props }">
@@ -75,6 +89,7 @@ const emit = defineEmits<{
     cardText: String
   ): void;
   (e: "move-card", cardId: number, columnId: number, direction: number): void;
+  (e: "remove-column", columnId: number): void;
 }>();
 const props = defineProps<Props>();
 
@@ -98,5 +113,9 @@ function moveCard(cardId: number, direction: number) {
 
 function removeCard(cardId: number) {
   ColumnService.removeCard(column, cardId);
+}
+
+function removeColumn() {
+  emit("remove-column", column.id);
 }
 </script>

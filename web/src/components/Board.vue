@@ -1,12 +1,12 @@
 <template>
-  <v-container style="min-width: max-content">
+  <v-container style="min-width: max-content" fluid>
     <v-row justify="center">
       <v-col class="text-center">
         <h1>{{ board.name }}</h1>
       </v-col>
     </v-row>
-    <v-row justify="center" no-gutters>
-      <v-col class="text-center" align-self="start" cols="1" width="100">
+    <v-row justify="center" no-gutters dense>
+      <v-col class="text-center" align-self="start" cols="auto" width="100">
         <AddColumn
           :board-name="board.name"
           @add-column="
@@ -17,10 +17,11 @@
         />
       </v-col>
       <template v-for="column in board.columns.values()" :key="column">
-        <v-col align-self="start" cols="3" class="mx-1" width="200">
+        <v-col align-self="start" cols="auto" class="mx-1" width="200">
           <Column
             @add-new-card="addNewCard"
             @move-card="moveCard"
+            @remove-column="removeColumn"
             :column="column"
             :is-most-left="column.pos === 0"
             :is-most-right="column.pos === maxColumnPos"
@@ -32,7 +33,7 @@
         v-if="needsSecondAddColumnButton"
         class="text-center"
         align-self="start"
-        cols="1"
+        cols="auto"
         width="100"
       >
         <AddColumn
@@ -103,5 +104,9 @@ function moveCard(cardId: number, columnId: number, direction: number) {
 
   ColumnService.removeCard(currentColumn, cardId);
   ColumnService.insertCard(newColumn, card);
+}
+
+function removeColumn(columnId: number) {
+  BoardService.removeColumn(board, columnId);
 }
 </script>

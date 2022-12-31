@@ -22,4 +22,16 @@ export class BoardService {
       );
     }
   }
+
+  static removeColumn(board: Board, columnId: number) {
+    board.columns = board.columns.filter((c) => c.id !== columnId);
+
+    board.columns.sort((a, b) => a.pos - b.pos);
+
+    let pos = 0;
+    board.columns.forEach((c) => {
+      c.pos = pos;
+      pos += 1;
+    });
+  }
 }
