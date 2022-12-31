@@ -10,10 +10,13 @@ export class Board {
   }
 
   addNewCard(columnId: number, cardTitle: String, cardText: String) {
-    const nextId = Math.max(
-      ...this.columns.flatMap((column) => column.cards).map((card) => card.id),
-      -1
-    );
+    const nextId =
+      Math.max(
+        ...this.columns
+          .flatMap((column) => column.cards)
+          .map((card) => card.id),
+        -1
+      ) + 1;
 
     this.columns
       .find((column) => column.id === columnId)
