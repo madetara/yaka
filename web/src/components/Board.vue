@@ -1,10 +1,5 @@
 <template>
   <v-container style="min-width: max-content" fluid>
-    <v-row justify="center">
-      <v-col class="text-center">
-        <h1>{{ board.name }}</h1>
-      </v-col>
-    </v-row>
     <v-row justify="center" no-gutters dense>
       <v-col class="text-center" align-self="start" cols="auto" width="100">
         <AddColumn

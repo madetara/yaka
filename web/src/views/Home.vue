@@ -4,7 +4,10 @@
 
 <script lang="ts" setup>
 import Board from "@/components/Board.vue";
-import { useBoardStore } from "@/store/app";
+import { useActiveBoardStore, useBoardStore } from "@/store/app";
 
 const boardStore = useBoardStore();
+const activeBoardIdStore = useActiveBoardStore();
+
+activeBoardIdStore.activeBoardId = boardStore.board.id;
 </script>

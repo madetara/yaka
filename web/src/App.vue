@@ -10,6 +10,12 @@
 
       <v-app-bar-title>yaka</v-app-bar-title>
 
+      <template v-if="activeBoardIdStore.activeBoardId !== -1">
+        <v-spacer></v-spacer>
+
+        <v-app-bar-title>{{ activeBoardName }}</v-app-bar-title>
+      </template>
+
       <v-spacer></v-spacer>
 
       <template v-slot:append>
@@ -35,11 +41,16 @@
 </template>
 
 <script lang="ts" setup>
-import { Ref, ref } from "vue";
+import { Ref, ref, computed } from "vue";
 import { RouterView } from "vue-router";
-import { useThemeStore } from "./store/app";
+import { useActiveBoardStore, useBoardStore, useThemeStore } from "./store/app";
 
 const themeStore = useThemeStore();
+const boardStore = useBoardStore();
+const activeBoardIdStore = useActiveBoardStore();
+const activeBoardName = computed(() => {
+  return boardStore.board.name;
+});
 
 const drawer: Ref<boolean> = ref(false);
 </script>
