@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="min-width: max-content">
     <v-row justify="center">
       <v-col class="text-center">
         <h1>{{ board.name }}</h1>

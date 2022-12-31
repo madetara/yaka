@@ -1,19 +1,7 @@
 <template>
   <div align="center">{{ column.title }}</div>
   <v-container>
-    <template v-for="card in column.cards.values()" :key="card">
-      <v-row no-gutters>
-        <v-col>
-          <Card
-            :card="card"
-            :move-left-disabled="props.isMostLeft"
-            :move-right-disabled="props.isMostRight"
-            @move-card="moveCard"
-          />
-        </v-col>
-      </v-row>
-    </template>
-    <v-row no-gutters justify="center" class="text-center">
+    <v-row no-gutters justify="center" class="text-center pb-2">
       <v-col align-self="center">
         <v-dialog width="400" v-model="addCardDialog">
           <template v-slot:activator="{ props }">
@@ -51,12 +39,26 @@
         </v-dialog>
       </v-col>
     </v-row>
+    <template v-for="card in column.cards.values()" :key="card">
+      <v-row no-gutters>
+        <v-col>
+          <Card
+            :card="card"
+            :move-left-disabled="props.isMostLeft"
+            :move-right-disabled="props.isMostRight"
+            @move-card="moveCard"
+            @remove-card="removeCard"
+          />
+        </v-col>
+      </v-row>
+    </template>
   </v-container>
 </template>
 
 <script lang="ts" setup>
 import Card from "@/components/Card.vue";
 import { Column } from "@/models/column";
+import { ColumnService } from "@/services/column";
 import { ref, reactive } from "vue";
 
 export interface Props {
@@ -92,5 +94,9 @@ function addNewCard() {
 
 function moveCard(cardId: number, direction: number) {
   emit("move-card", cardId, column.id, direction);
+}
+
+function removeCard(cardId: number) {
+  ColumnService.removeCard(column, cardId);
 }
 </script>

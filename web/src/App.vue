@@ -28,7 +28,7 @@
     <v-navigation-drawer v-model="drawer" location="left" temporary>
     </v-navigation-drawer>
 
-    <v-main>
+    <v-main scrollable>
       <router-view />
     </v-main>
   </v-app>

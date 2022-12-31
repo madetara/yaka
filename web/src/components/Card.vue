@@ -6,10 +6,17 @@
     :flat="true"
     :width="200"
   >
-    <v-card-title>
-      {{ card.title }}
-    </v-card-title>
-    <v-card-text> {{ card.text }}</v-card-text>
+    <v-toolbar color="rgba(0, 0, 0, 0)">
+      <v-toolbar-title>
+        {{ card.title }}
+      </v-toolbar-title>
+      <template v-slot:append>
+        <v-btn icon="mdi-minus-thick" @click="removeCard"> </v-btn>
+      </template>
+    </v-toolbar>
+    <v-card-text v-if="card.text !== null && card.text.trim() !== ''">
+      {{ card.text }}</v-card-text
+    >
     <v-card-actions>
       <v-btn
         icon="mdi-arrow-left"
@@ -43,6 +50,7 @@ enum Direction {
 
 const emit = defineEmits<{
   (e: "move-card", cardId: number, direction: number): void;
+  (e: "remove-card", cardId: number): void;
 }>();
 const props = defineProps<Props>();
 
@@ -52,5 +60,9 @@ const moveRightDisabled = ref(props.moveRightDisabled);
 
 function moveCard(direction: Direction) {
   emit("move-card", card.id, direction);
+}
+
+function removeCard() {
+  emit("remove-card", card.id);
 }
 </script>
